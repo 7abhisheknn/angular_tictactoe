@@ -29,10 +29,11 @@ export class BoardComponent {
     if (!this.squares![idx]) {
       this.squares?.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
+      this.calculateWinner();
     }
   }
 
-  calculateWinner(): string | undefined{
+  calculateWinner(): void{
     const lines = [
       [0, 1, 2],
       [3,4,5],
@@ -49,9 +50,7 @@ export class BoardComponent {
         this.squares![a] &&
         this.squares![a]==this.squares![b] &&
         this.squares![a]==this.squares![c]
-      ) return this.squares![a];
+      ) return this.winner=this.squares![a];
     }
-    return undefined;
-
   }
 }
